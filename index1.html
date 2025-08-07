@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu do Nosso Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #ffe0f0, #fad1e6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1rem 4rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: #b2006b;
+      font-family: 'Great Vibes', cursive;
+      margin-bottom: 0.2em;
+      animation: fadeInDown 1s ease-out;
+      text-align: center;
+    }
+
+    p.tagline {
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      color: #b2006b;
+      margin-bottom: 2em;
+      animation: fadeInUp 1s ease-out;
+      text-align: center;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+      z-index: 1;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      text-decoration: none;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(255,192,203,0.4), transparent 70%);
+      top: -30%;
+      left: -30%;
+      transform: scale(0);
+      transition: transform 0.5s ease;
+      z-index: 0;
+    }
+
+    .card:hover::before {
+      transform: scale(1);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      color: #b2006b;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #555;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+      background-size: contain;
+      animation: float 10s linear infinite;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .floating-text {
+      position: absolute;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: rgba(178, 0, 107, 0.1);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Menu do Nosso Amor</h1>
+  <p class="tagline">💕 Juntos para sempre 💕</p>
+
+  <div class="container">
+    <a href="para_namora/index2.html" class="card">
+      <h2>Nossas Memórias</h2>
+      <p>Momentos pra nunca esquecer 💖</p>
+    </a>
+    
+    <a href="para_namora/index3.html" class="card">
+      <h2>Calendário do Amor</h2>
+      <p>Contar o tempo do nosso amor 📅</p>
+    </a>
+    
+    <a href="para_namora/index4.html" class="card">
+      <h2>Jogo da Memória</h2>
+      <p>Descubra as lembranças 💭</p>
+    </a>
+    
+    <a href="C:\Users\Usuário\Desktop\VScode\para_namora\index5.html" class="card">
+      <h2>Notas de Amor</h2>
+      <p>Mensagens doces só pra nós 💌</p>
+    </a>
+  </div>
+
+  <!-- Frases doces no fundo -->
+  <div class="floating-text" style="top: 15%; left: 5%;">Você é o amor da minha vida 💕</div>
+  <div class="floating-text" style="top: 35%; left: 70%;">Cada momento com você é mágico ✨</div>
+  <div class="floating-text" style="top: 75%; left: 20%;">Nosso amor é infinito 💘</div>
+
+  <!-- Corações flutuando -->
+  <script>
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+</body>
+</html>

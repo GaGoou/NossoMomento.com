@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Nossa Jornada do Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+    body {
+      background: linear-gradient(-45deg, #ffd6e8, #ffe6f2, #f8cce0, #f9e1f0);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      color: #ad1457;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 30px 20px;
+      user-select: none;
+    }
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 8px #d81b60;
+      letter-spacing: 1.2px;
+    }
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: #880e4f;
+      text-shadow: 0 0 5px #c2185b88;
+    }
+    .foto-amor {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 7px solid white;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 30px rgba(194, 43, 99, 0.7);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+    .foto-amor:hover,
+    .foto-amor:active {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(194, 43, 99, 0.9);
+    }
+    .foto-amor img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .contador {
+      background-color: white;
+      padding: 25px 35px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(198, 38, 87, 0.3);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      max-width: 420px;
+      width: 100%;
+    }
+    .contador div {
+      color: #d81b60;
+      text-align: center;
+      background: #ffe3f1;
+      padding: 15px 20px;
+      border-radius: 15px;
+      min-width: 85px;
+      box-shadow: 0 4px 12px rgba(216, 27, 96, 0.25);
+      transition: background-color 0.3s ease;
+      user-select: text;
+    }
+    .contador div:hover {
+      background-color: #f8bbd0;
+    }
+    .contador span {
+      display: block;
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+      text-shadow: 0 0 6px #b71c1c;
+    }
+    .mensagem {
+      font-size: 1.15rem;
+      color: #ad1457;
+      font-weight: 600;
+      text-shadow: 0 0 6px #880e4f;
+      margin-top: 10px;
+    }
+    .coracao {
+      font-size: 3rem;
+      margin: 15px 0 30px;
+      animation: pulse 2s infinite;
+      user-select: none;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+      }
+    }
+    /* Responsivo */
+    @media(max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      .foto-amor {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 25px;
+      }
+      .contador {
+        font-size: 1.1rem;
+        padding: 20px;
+        max-width: 100%;
+      }
+      .contador div {
+        min-width: 60px;
+        padding: 12px 15px;
+      }
+      .contador span {
+        font-size: 1.8rem;
+      }
+      .mensagem {
+        font-size: 1rem;
+      }
+      .coracao {
+        font-size: 2.5rem;
+        margin: 10px 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Nossa jornada do amor</h1>
+  <p>Contagem regressiva até 27/08/2025</p>
+
+  <div class="coracao">💗</div>
+
+  <div class="foto-amor" title="Nosso amor">
+    <img src="https://i.postimg.cc/pLMpnqYY/FOTO-14.jpg" alt="Foto do casal">
+  </div>
+
+  <div class="contador" id="contador"></div>
+
+  <div class="mensagem" id="mensagem">Estamos contando os dias com amor! 💘</div>
+
+  <script>
+    // Data alvo: 27/08/2025 às 00:00
+    const dataAlvo = new Date('2025-08-27T00:00:00');
+    const contador = document.getElementById('contador');
+    const mensagem = document.getElementById('mensagem');
+
+    function atualizarContagem() {
+      const agora = new Date();
+      const diffMs = dataAlvo - agora; // tempo restante em ms
+
+      if (diffMs > 0) {
+        // Calcula dias, horas, minutos e segundos restantes
+        const dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+        const minutos = Math.floor((diffMs / (1000 * 60)) % 60);
+        const segundos = Math.floor((diffMs / 1000) % 60);
+
+        contador.innerHTML = `
+          <div><span>${dias}</span>dias</div>
+          <div><span>${horas.toString().padStart(2, '0')}</span>horas</div>
+          <div><span>${minutos.toString().padStart(2, '0')}</span>min</div>
+          <div><span>${segundos.toString().padStart(2, '0')}</span>seg</div>
+        `;
+        mensagem.textContent = '💖 FALTA POUCA PARA NOSSO DIA, MEU AMOR 💖';
+      } else {
+        // Quando a contagem chega a zero ou passa, exibe mensagem especial
+        contador.innerHTML = '';
+        mensagem.textContent = '🎉 FELIZ NOS DOIS MEU AMOR, TE AMO MIL MILHOES💘';
+      }
+    }
+
+    atualizarContagem();
+    setInterval(atualizarContagem, 1000);
+  </script>
+
+</body>
+</html>

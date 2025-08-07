@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joguinho do Amor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding: 30px 10px;
+      position: relative;
+    }
+
+    h1 {
+      color: #d81b60;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #880e4f;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 15px;
+    }
+
+    .card {
+      width: 80px;
+      height: 80px;
+      background-color: #fff;
+      border: 2px dashed #f48fb1;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s;
+      perspective: 1000px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .card.revealed img {
+      display: block;
+    }
+
+    .card .placeholder {
+      position: absolute;
+      font-size: 2rem;
+      color: #d81b60;
+    }
+
+    .card.revealed .placeholder {
+      display: none;
+    }
+
+    /* Tela de vitória */
+    #victoryScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 192, 203, 0.95);
+      color: #880e4f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px;
+      display: none;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #victoryScreen h2 {
+      font-size: 2.5rem;
+      color: #c2185b;
+      margin-bottom: 20px;
+    }
+
+    #victoryScreen p {
+      font-size: 1.5rem;
+      color: #d81b60;
+    }
+  </style>
+</head>
+<body>
+  <h1>Um joguinho para você 💖</h1>
+  <p>Tente acertar todas as fotos!</p>
+
+  <div class="game-board" id="gameBoard"></div>
+
+  <!-- Tela de vitória -->
+  <div id="victoryScreen">
+    <h2>Parabéns, Amor! 💘</h2>
+    <p>Você encontrou todas as nossas lembranças juntos!<br>Te amo! 💖</p>
+  </div>
+
+  <!-- Música de fundo -->
+  <audio id="victoryMusic" src="c:\Users\Usuário\Pictures\Saved Pictures\Áudio do WhatsApp de 2025-08-07 à(s) 18.08.54_214a9a63.mp3"></audio>
+
+  <script>
+    const imagens = [
+      'https://i.postimg.cc/NGrX99vt/FOTO-13.jpg',
+      'https://i.postimg.cc/pLMpnqYY/FOTO-14.jpg',
+      'https://i.postimg.cc/dVW3Swcn/FOTO-12.jpg',
+      'https://i.postimg.cc/d0p1w61y/FOTO-11.jpg',
+      'https://i.postimg.cc/L6D8n25R/FOTO-2.jpg',
+      'https://i.postimg.cc/0NMkWSf2/FOTO-3.jpg'
+    ];
+
+    const cartas = [...imagens, ...imagens].sort(() => Math.random() - 0.5);
+    const gameBoard = document.getElementById('gameBoard');
+    const victoryScreen = document.getElementById('victoryScreen');
+    const victoryMusic = document.getElementById('victoryMusic');
+
+    let primeiraCarta = null;
+    let segundaCarta = null;
+    let bloqueado = false;
+    let paresEncontrados = 0;
+
+    cartas.forEach((src) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.dataset.image = src;
+
+      const img = document.createElement('img');
+      img.src = src;
+
+      const placeholder = document.createElement('span');
+      placeholder.textContent = '?';
+      placeholder.classList.add('placeholder');
+
+      card.appendChild(img);
+      card.appendChild(placeholder);
+
+      card.addEventListener('click', () => {
+        if (bloqueado || card.classList.contains('revealed')) return;
+
+        card.classList.add('revealed');
+
+        if (!primeiraCarta) {
+          primeiraCarta = card;
+        } else {
+          segundaCarta = card;
+          bloqueado = true;
+
+          const match = primeiraCarta.dataset.image === segundaCarta.dataset.image;
+
+          if (match) {
+            primeiraCarta = null;
+            segundaCarta = null;
+            bloqueado = false;
+            paresEncontrados++;
+
+            if (paresEncontrados === imagens.length) {
+              mostrarTelaDeVitoria();
+            }
+
+          } else {
+            setTimeout(() => {
+              primeiraCarta.classList.remove('revealed');
+              segundaCarta.classList.remove('revealed');
+              primeiraCarta = null;
+              segundaCarta = null;
+              bloqueado = false;
+            }, 1000);
+          }
+        }
+      });
+
+      gameBoard.appendChild(card);
+    });
+
+    function mostrarTelaDeVitoria() {
+      victoryScreen.style.display = 'flex';
+      victoryMusic.play();
+    }
+  </script>
+</body>
+</html>

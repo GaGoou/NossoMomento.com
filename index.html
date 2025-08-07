@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu do Amor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #f8c4d9;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff0f5;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .content {
+      text-align: center;
+      flex: 1 1 250px;
+    }
+
+    .logo {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: #333;
+    }
+
+    .subtext {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 160px;
+      font-size: 18px;
+      text-align: center;
+      border: 2px solid #d47ca8;
+      border-radius: 10px;
+      background-color: #fff0f5;
+      margin-bottom: 20px;
+    }
+
+    .teclado {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .teclado button {
+      padding: 15px;
+      font-size: 18px;
+      background-color: #f9d6e4;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .teclado button:hover {
+      background-color: #f7b4cf;
+    }
+
+    .foto {
+      text-align: center;
+      flex: 1 1 150px;
+    }
+
+    .foto img {
+      width: 150px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 10px;
+    }
+
+    .foto p {
+      font-size: 16px;
+      color: #c14680;
+    }
+
+    .mensagem {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #c14680;
+      font-weight: bold;
+    }
+
+    #botaoAcesso {
+      margin-top: 15px;
+      display: none;
+      padding: 12px 25px;
+      background-color: #d47ca8;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    #botaoAcesso:hover {
+      background-color: #b3587c;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      .teclado {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .foto img {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="logo">🎀</div>
+      <h2>Minha Senha</h2>
+      <p class="subtext">como você é especial para mim</p>
+
+      <input type="password" id="senha" placeholder="Digite a senha" maxlength="8" readonly />
+      <div class="mensagem" id="mensagem"></div>
+
+      <!-- Botão/link para acessar outra página -->
+      <a href="C:\Users\Usuário\Desktop\VScode\para_namora\index1.html" id="botaoAcesso">Acessar Página Secreta</a>
+
+      <div class="teclado" id="teclado"></div>
+    </div>
+
+    <div class="foto">
+      <img src="https://i.postimg.cc/HLNGrWfJ/FOTO-4.jpg" alt="Casal" />
+      <p>Eu te amo 💖</p>
+    </div>
+  </div>
+
+  <script>
+    const senhaCorreta = "2708";
+    const inputSenha = document.getElementById('senha');
+    const teclado = document.getElementById('teclado');
+    const mensagem = document.getElementById('mensagem');
+    const botaoAcesso = document.getElementById('botaoAcesso');
+
+    // Garante que o botão fique escondido assim que a página carregar
+    botaoAcesso.style.display = "none";
+
+    const botoes = [
+      "1", "2", "3",
+      "4", "5", "6",
+      "7", "8", "9",
+      "←", "0", "OK"
+    ];
+
+    function criarTeclado() {
+      botoes.forEach(valor => {
+        const botao = document.createElement('button');
+        botao.textContent = valor;
+
+        botao.addEventListener('click', () => {
+          if (valor === "←") {
+            apagarUltimo();
+          } else if (valor === "OK") {
+            verificarSenha();
+          } else {
+            adicionarNumero(valor);
+          }
+        });
+
+        teclado.appendChild(botao);
+      });
+    }
+
+    function adicionarNumero(numero) {
+      if (inputSenha.value.length < 8) {
+        inputSenha.value += numero;
+      }
+    }
+
+    function apagarUltimo() {
+      inputSenha.value = inputSenha.value.slice(0, -1);
+    }
+
+    function verificarSenha() {
+      if (inputSenha.value === senhaCorreta) {
+        mensagem.textContent = "Senha correta! ❤️ Agora você pode acessar a página.";
+        botaoAcesso.style.display = "inline-block";
+        inputSenha.value = "";
+      } else {
+        alert("Senha incorreta! 😢");
+        inputSenha.value = "";
+        mensagem.textContent = "";
+        botaoAcesso.style.display = "none";
+      }
+    }
+
+    criarTeclado();
+  </script>
+</body>
+</html>

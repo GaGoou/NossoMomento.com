@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carta Aberta com Texto de Amor Tela Cheia</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #ffe4ec, #ffd6e8);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #5a1a2b;
+    min-height: 100vh;
+  }
+
+  .container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    transition: opacity 0.5s ease;
+  }
+
+  .carta {
+    cursor: pointer;
+    width: 280px;
+    max-width: 90vw;
+    filter: drop-shadow(0 8px 10px rgba(200, 30, 60, 0.35));
+    transition: transform 0.3s ease;
+    border-radius: 20px;
+    user-select: none;
+    display: block;
+  }
+
+  .carta:hover {
+    transform: scale(1.08);
+  }
+
+  .texto-amor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffd6e8;
+    color: #4a0b1d;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* mensagem mais para baixo */
+    padding: 80px 40px 20px 40px; /* padding-top maior para descer a mensagem */
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    z-index: 10;
+    box-shadow: inset 0 0 150px 30px rgba(255, 0, 85, 0.15);
+    overflow-y: auto;
+  }
+
+  .texto-amor.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .texto-amor-content {
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 50px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(200, 0, 60, 0.3);
+    user-select: text;
+    color: #4a0b1d;
+    font-style: normal;
+  }
+
+  .texto-amor-content p {
+    margin: 0 0 20px 0;
+  }
+
+  /* Estilo do vídeo para ficar responsivo e bonitinho */
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    padding-top: 25px;
+    height: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(200, 0, 60, 0.3);
+    margin-top: 20px;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+
+  .close-dica {
+    position: fixed;
+    bottom: 25px;
+    font-size: 1rem;
+    color: #7b1e3a;
+    font-style: italic;
+    opacity: 0.6;
+    user-select: none;
+  }
+
+  @media (max-width: 800px) {
+    .texto-amor {
+      padding: 20px 20px;
+      font-size: 1.1rem;
+    }
+    .texto-amor-content {
+      max-width: 90vw;
+      padding: 25px 30px;
+      font-size: 1rem;
+    }
+    .video-container {
+      padding-top: 56.25%;
+      margin-top: 15px;
+    }
+    .carta {
+      width: 240px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .texto-amor {
+      font-size: 1rem;
+      padding: 15px 10px;
+      text-align: left;
+    }
+    .texto-amor-content {
+      max-width: 90vw;
+      padding: 20px 25px;
+      font-size: 0.95rem;
+    }
+    .carta {
+      width: 220px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <img 
+      src="https://origamiami.com/wp-content/uploads/2021/09/carta-coracao.png" 
+      alt="Carta aberta com coração" 
+      class="carta" 
+      id="carta" 
+      aria-label="Clique para ver mensagem de amor"
+      draggable="false"
+    />
+  </div>
+
+  <div class="texto-amor" id="textoAmor" role="dialog" aria-modal="true" aria-hidden="true" tabindex="0">
+    <div class="texto-amor-content">
+      <p>
+        MINHA QUERIDA E MARAVILHOSA<br><br>
+        Desde que você entrou na minha vida, tudo ganhou um significado novo e mais intenso. Você não é apenas alguém que eu amo — você é a pessoa que me inspira a ser melhor, que me faz acreditar em um amor verdadeiro e infinito. Eu me sinto abençoado por ter você ao meu lado, porque você é, sem dúvida, a coisa mais impressionante que já aconteceu comigo.<br><br>
+        Sua beleza vai muito além do que os olhos podem ver. É a beleza do seu coração generoso, da sua alma pura e da sua força silenciosa que me deixam completamente maravilhado. Eu admiro cada detalhe seu, desde o jeito que você sorri, passando pela sua inteligência, sua sensibilidade, até a maneira única que você tem de transformar tudo ao seu redor com a sua luz. Você é um presente que eu agradeço todos os dias.<br><br>
+        Eu sempre quero você perto de mim — não apenas por companhia, mas porque a sua presença me traz paz, alegria e a certeza de que juntos podemos conquistar o mundo. Você é a minha maior preocupação porque eu me importo com você de um jeito profundo, que não cabe no peito. Quando estamos longe, sinto uma saudade que aperta o coração, e a vontade de estar ao seu lado cresce a cada segundo.<br><br>
+        Sonho com a nossa vida juntos, uma vida cheia de amor, cumplicidade e sonhos realizados. Quero construir uma família com você, criar um lar onde o respeito, o carinho e a felicidade sejam os alicerces que sustentam tudo. Quero envelhecer com você, ver as nossas histórias marcando a pele e os corações, e saber que mesmo depois de tantos anos, o amor que sinto continua forte e vibrante, como no primeiro dia.<br><br>
+        Quero dividir com você cada passo, cada desafio, cada vitória. Quero ser o seu abrigo quando o mundo parecer difícil, o seu sorriso quando os dias forem cinzas, e a sua força quando você precisar. Você me faz sentir que tudo é possível, que o amor é a maior magia que existe, e que, juntos, podemos transformar qualquer sonho em realidade.<br><br>
+        Mesmo quando não estou ao seu lado, saiba que o meu coração bate por você. Eu continuo te amando em silêncio, te admirando de longe e me esforçando para ser o melhor que posso, porque você merece um amor imenso, genuíno e dedicado. Eu sei que não sou perfeito, que às vezes erro, mas o que nunca vai faltar é o meu empenho para fazer você feliz, para cuidar de você e para ver seu sorriso iluminando o meu mundo.<br><br>
+        Você é minha inspiração diária, minha força, meu porto seguro. Eu quero que você saiba que, para mim, você é única, insubstituível e absolutamente incrível. Eu te amo com uma intensidade que palavras não conseguem explicar, e é com você que eu quero viver essa aventura chamada vida.<br><br>
+        Obrigada por ser quem você é, por me amar e me permitir amar você. Eu prometo estar sempre ao seu lado, fazendo tudo que estiver ao meu alcance para te ver feliz, porque o seu sorriso é o que dá sentido a tudo.<br><br>
+        Eu te amo hoje, amanhã e por toda a eternidade.<br><br>
+        Com todo o meu amor,<br>
+        nathan.
+      </p>
+      <div class="video-container">
+        <video controls preload="metadata" aria-label="Vídeo romântico">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Seu navegador não suporta o elemento de vídeo.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div class="close-dica" id="closeDica" style="display:none;">Clique na mensagem para fechar</div>
+
+<script>
+  const carta = document.getElementById('carta');
+  const textoAmor = document.getElementById('textoAmor');
+  const container = document.querySelector('.container');
+  const closeDica = document.getElementById('closeDica');
+
+  carta.addEventListener('click', () => {
+    textoAmor.classList.add('show');
+    container.style.opacity = '0';
+    textoAmor.setAttribute('aria-hidden', 'false');
+    textoAmor.focus();
+    closeDica.style.display = 'block';
+  });
+
+  textoAmor.addEventListener('click', () => {
+    textoAmor.classList.remove('show');
+    container.style.opacity = '1';
+    textoAmor.setAttribute('aria-hidden', 'true');
+    closeDica.style.display = 'none';
+  });
+</script>
+</body>
+</html>
